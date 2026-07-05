@@ -154,6 +154,7 @@ function App() {
         }
       />
       <Route path="/admin" element={<AdminPortalPage session={session} profile={profile} />} />
+      <Route path="/admin.html" element={<AdminPortalPage session={session} profile={profile} />} />
       <Route path="/auth" element={<Navigate to="/" replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
@@ -189,7 +190,7 @@ function AffiliatePortalPage({
     }
 
     if (session && profile?.role === 'admin') {
-      navigate('/admin', { replace: true });
+      navigate('/admin.html', { replace: true });
     }
   }, [navigate, profile, session]);
 
@@ -902,7 +903,7 @@ function AdminDashboard({ profile }: { profile: Profile }) {
                 type="button"
                 onClick={async () => {
                   await supabase!.auth.signOut();
-                  navigate('/admin', { replace: true });
+                  navigate('/admin.html', { replace: true });
                 }}
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950"
               >

@@ -3,7 +3,7 @@
 React + Tailwind frontend for a Supabase-backed referral and affiliate portal with role-based access:
 
 - Affiliate portal at `/` with code-verified account setup and read-only lead visibility
-- Admin portal at `/admin` for affiliate setup, lead management, and payout reminders
+- Admin portal at `/admin.html` for affiliate setup, lead management, and payout reminders
 - Shared Supabase backend with Auth, Postgres, and Row Level Security
 
 ## Stack
@@ -69,7 +69,7 @@ set role = 'admin'
 where id = 'YOUR_AUTH_USER_UUID';
 ```
 
-6. After that, all future affiliates should be created only from the admin portal at `/admin`.
+6. After that, all future affiliates should be created only from the admin portal at `/admin.html`.
 
 ## Security notes
 
