@@ -1,10 +1,10 @@
 # Excalibur Affiliate App
 
-React + Tailwind frontend for a Supabase-backed referral and affiliate portal with three roles:
+React + Tailwind frontend for a Supabase-backed referral and affiliate portal with role-based access:
 
-- Public lead intake without login
-- Affiliate dashboard with read-only access to owned leads and payout status
-- Admin dashboard for affiliate and lead management
+- Affiliate portal at `/` with code-verified account setup and read-only lead visibility
+- Admin portal at `/admin` for affiliate setup, lead management, and payout reminders
+- Shared Supabase backend with Auth, Postgres, and Row Level Security
 
 ## Stack
 
@@ -57,8 +57,8 @@ npm run build
 4. Seed the first invited email in SQL so account creation is allowed:
 
 ```sql
-insert into public.affiliate_invites (email, name, referral_code)
-values ('you@example.com', 'Your Name', 'EXCAL001');
+insert into public.affiliate_invites (email, name, referral_code, access_code)
+values ('you@example.com', 'Your Name', 'EXCAL001', 'WELCOME123');
 ```
 
 5. Activate that invited account from the portal, then promote it to admin:
@@ -69,21 +69,23 @@ set role = 'admin'
 where id = 'YOUR_AUTH_USER_UUID';
 ```
 
-6. After that, all future affiliates should be created only from the admin portal invite form.
+6. After that, all future affiliates should be created only from the admin portal at `/admin`.
 
 ## Security notes
 
 - Public users can only `INSERT` into `leads`.
 - Affiliates can only `SELECT` their own `leads` and their own `profile`.
-- Admins get full CRUD on `profiles` and `leads` through RLS.
-- New affiliate auth accounts are blocked unless a matching row exists in `affiliate_invites`.
+- Admins get full CRUD on `profiles`, `leads`, and `affiliate_invites` through RLS.
+- New affiliate auth accounts are blocked unless a matching admin-created invite exists and the affiliate has verified the correct access code first.
 - Public spam protection here is client-side only: schema validation, honeypot field, and local rate limiting. If you want hard server-side throttling later, add a Supabase Edge Function or CAPTCHA gateway in front of inserts.
 
 ## Business rules captured
 
-- Lead pipeline: `new -> contacted -> signed -> tier_1_paid -> tier_2_paid`
-- Tier 1 payout tracked at `$200`
-- Tier 2 payout tracked as total earned of `$400`
+- Lead pipeline: `lead -> contacted -> closed`
+- Admin closes the lead when a referral becomes a client
+- Closing a lead starts the payout clock automatically
+- Tier 1 payout due at `$200` after `30` days by default, or `60` days when that lead is set to the retainer-only timeline
+- Tier 2 payout due at `$200` after `6 months`
 - Total referral cap tracked at `$400`
 
-The 30-day / 60-day timing rule is not automatically enforced from billing data in this version. Admins mark payout milestones when those conditions are met operationally.
+The portal shows payout reminders when milestone dates are due. Admins still mark payouts manually after sending them.

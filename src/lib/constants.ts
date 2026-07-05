@@ -2,11 +2,9 @@ import { HandCoins, LayoutTemplate, ShieldCheck } from 'lucide-react';
 import type { LeadStatus } from './types';
 
 export const leadStatuses: Array<{ value: LeadStatus; label: string }> = [
-  { value: 'new', label: 'New' },
+  { value: 'lead', label: 'Lead' },
   { value: 'contacted', label: 'Contacted' },
-  { value: 'signed', label: 'Signed' },
-  { value: 'tier_1_paid', label: 'Tier 1 Paid' },
-  { value: 'tier_2_paid', label: 'Tier 2 Paid' },
+  { value: 'closed', label: 'Closed' },
 ];
 
 export const marketingResources = [
@@ -30,17 +28,17 @@ export const marketingResources = [
 export const featureCards = [
   {
     title: 'Your referrals stay connected',
-    body: 'Every referral tied to your code shows up in one place, so you always know what belongs to you.',
+    body: 'Every referral tied to your code stays attached to you, so you always know what is moving.',
     icon: ShieldCheck,
   },
   {
-    title: 'Clear payout progress',
-    body: 'You can see which referrals are moving forward and how much has already been paid out.',
+    title: 'Clear payout timing',
+    body: 'Once a referral becomes a client, you can see payout timing and what has already been paid.',
     icon: HandCoins,
   },
   {
     title: 'Ready-to-share copy',
-    body: 'Keep a few clean messages on hand so sharing feels easy when the right opportunity comes up.',
+    body: 'Keep a few polished messages nearby so sharing feels easy when the right moment comes up.',
     icon: LayoutTemplate,
   },
 ];
