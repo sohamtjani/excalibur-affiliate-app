@@ -153,8 +153,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<AffiliatePortalPage session={session} profile={profile} />} />
-      <Route path="/lead-form" element={<LeadIntakePage />} />
-      <Route path="/lead-form.html" element={<LeadIntakePage />} />
       <Route
         path="/dashboard"
         element={
@@ -675,8 +673,8 @@ function AffiliateDashboard({ profile }: { profile: Profile }) {
   const [message, setMessage] = useState<string | null>(null);
   const payoutSummary = useMemo(() => summarizePayouts(leads), [leads]);
   const personalizedFormLink = profile.referral_code
-    ? `https://sohamtjani.github.io/excalibur-affiliate-app/lead-form.html?ref=${encodeURIComponent(profile.referral_code)}`
-    : 'https://sohamtjani.github.io/excalibur-affiliate-app/lead-form.html';
+    ? `https://sohamtjani.github.io/excalibur-lead-form/?ref=${encodeURIComponent(profile.referral_code)}`
+    : 'https://sohamtjani.github.io/excalibur-lead-form/';
 
   useEffect(() => {
     async function loadLeads() {
