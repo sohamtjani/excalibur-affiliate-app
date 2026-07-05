@@ -469,7 +469,9 @@ function AffiliatePortalPage({
 
           if (error) throw error;
 
-          setMessage('Your account is ready. If email confirmation is enabled, finish that step, then sign in.');
+          setMessage(
+            'Your account is almost ready. Check your inbox and verify your email before trying to sign in with your new password.',
+          );
           setMode('signin');
         }
       }
