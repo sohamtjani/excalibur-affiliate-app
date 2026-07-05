@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  color: #f7f1e5;
-  background: #0c1a2e;
-  font-family: "Manrope", system-ui, sans-serif;
+  color: #0f172a;
+  background: #eef6ff;
+  font-family: "Space Grotesk", "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
 body {
@@ -13,9 +13,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(201, 162, 75, 0.18), transparent 34%),
-    linear-gradient(180deg, #0a1422 0%, #0c1a2e 52%, #142844 100%);
-  color: #f7f1e5;
+    radial-gradient(circle at top left, rgba(125, 211, 252, 0.48), transparent 26%),
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.28), transparent 30%),
+    linear-gradient(180deg, #f7fbff 0%, #edf5ff 52%, #e0eeff 100%);
+  color: #0f172a;
 }
 
 * {
@@ -35,13 +36,20 @@ textarea {
 }
 
 .glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04));
-  border: 1px solid rgba(217, 227, 240, 0.16);
-  backdrop-filter: blur(22px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.54));
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(26px);
 }
 
 .gold-ring {
   box-shadow:
-    0 0 0 1px rgba(201, 162, 75, 0.5),
-    0 24px 60px rgba(4, 12, 24, 0.24);
+    0 0 0 1px rgba(191, 219, 254, 0.9),
+    0 24px 70px rgba(67, 96, 168, 0.14);
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.62));
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 70px rgba(67, 96, 168, 0.14);
+  backdrop-filter: blur(24px);
 }

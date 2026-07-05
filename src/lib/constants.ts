@@ -1,4 +1,4 @@
-import { HandCoins, Landmark, ShieldCheck } from 'lucide-react';
+import { HandCoins, LayoutTemplate, ShieldCheck } from 'lucide-react';
 import type { LeadStatus } from './types';
 
 export const leadStatuses: Array<{ value: LeadStatus; label: string }> = [
@@ -11,36 +11,36 @@ export const leadStatuses: Array<{ value: LeadStatus; label: string }> = [
 
 export const marketingResources = [
   {
-    title: 'Owner-to-owner outreach',
+    title: 'Simple intro email',
     copy:
-      'If you know a business owner who needs sharper systems, stronger outreach, or disciplined growth support, I can connect you directly with Excalibur. Mention my referral code so they start in the right pipeline.',
+      'If you know a business owner who wants stronger growth support, I can connect you with Excalibur. Use my referral code when you reach out so everything is tracked correctly from the start.',
   },
   {
-    title: 'Text message intro',
+    title: 'Quick text message',
     copy:
-      'I’ve been sending qualified businesses to Excalibur because they move fast and handle execution seriously. If you want an intro, use my referral code when you reach out so they can track it correctly.',
+      'I work with Excalibur and can point you in the right direction if you want to learn more. Mention my referral code when you message them so your request is linked to me.',
   },
   {
-    title: 'LinkedIn caption',
+    title: 'Social post caption',
     copy:
-      'Strong operators know growth is rarely a traffic problem alone. If your business needs tighter sales systems, cleaner operations, and a direct path to revenue, Excalibur is worth a conversation. Use my referral code when you inquire.',
+      'If your business is ready for stronger growth support and clearer next steps, Excalibur is worth a look. If you reach out, use my referral code so your inquiry is connected to me.',
   },
 ];
 
 export const featureCards = [
   {
-    title: 'Protected partner attribution',
-    body: 'Referral codes resolve automatically to the right affiliate record, then stay locked behind Supabase RLS.',
+    title: 'Your referrals stay connected',
+    body: 'Every referral tied to your code shows up in one place, so you always know what belongs to you.',
     icon: ShieldCheck,
   },
   {
-    title: 'Milestone payout tracking',
-    body: 'Track each lead from intake through Tier 1 and Tier 2 payouts with a fixed $400 cap per referral.',
+    title: 'Clear payout progress',
+    body: 'You can see which referrals are moving forward and how much has already been paid out.',
     icon: HandCoins,
   },
   {
-    title: 'Admin-grade oversight',
-    body: 'Authenticated admins can manage affiliates, lead status changes, and account activity from a single dashboard.',
-    icon: Landmark,
+    title: 'Ready-to-share copy',
+    body: 'Keep a few clean messages on hand so sharing feels easy when the right opportunity comes up.',
+    icon: LayoutTemplate,
   },
 ];
