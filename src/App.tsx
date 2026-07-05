@@ -674,6 +674,9 @@ function AffiliateDashboard({ profile }: { profile: Profile }) {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
   const payoutSummary = useMemo(() => summarizePayouts(leads), [leads]);
+  const personalizedFormLink = profile.referral_code
+    ? `https://sohamtjani.github.io/excalibur-affiliate-app/lead-form.html?ref=${encodeURIComponent(profile.referral_code)}`
+    : 'https://sohamtjani.github.io/excalibur-affiliate-app/lead-form.html';
 
   useEffect(() => {
     async function loadLeads() {
@@ -799,6 +802,31 @@ function AffiliateDashboard({ profile }: { profile: Profile }) {
           </div>
 
           <div className="space-y-6">
+            <div className="panel rounded-[2rem] p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.26em] text-slate-500">Your form link</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
+                Share your tracked page
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Anyone who uses this link will land on your personal interest form with your code already attached.
+              </p>
+              <div className="mt-5 rounded-[1.4rem] border border-slate-200 bg-white/72 p-4">
+                <p className="break-all text-sm leading-6 text-slate-700">{personalizedFormLink}</p>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <CopyButton label="Copy my form link" value={personalizedFormLink} />
+                <a
+                  href={personalizedFormLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                  Open form
+                </a>
+              </div>
+            </div>
+
             <div className="panel rounded-[2rem] p-6">
               <p className="text-sm font-semibold uppercase tracking-[0.26em] text-slate-500">Payouts</p>
               <h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
