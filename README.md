@@ -4,6 +4,7 @@ React + Tailwind frontend for a Supabase-backed referral and affiliate portal wi
 
 - Affiliate portal at `/` with code-verified account setup and read-only lead visibility
 - Admin portal at `/admin.html` for affiliate setup, lead management, and payout reminders
+- Public lead form at `/lead-form.html` for direct website embeds or links
 - Shared Supabase backend with Auth, Postgres, and Row Level Security
 
 ## Stack
