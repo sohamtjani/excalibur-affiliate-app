@@ -11,7 +11,6 @@ import {
   Mail,
   Phone,
   ShieldCheck,
-  Sparkles,
   UserRoundPlus,
   Wallet,
 } from 'lucide-react';
@@ -20,6 +19,7 @@ import { featureCards, leadStatuses, marketingResources } from './lib/constants'
 import { getDueMilestones, getLeadStatusLabel, normalizeLeadStage, summarizePayouts } from './lib/payouts';
 import { supabase, supabaseConfigError } from './lib/supabase';
 import type { AffiliateInvite, Lead, LeadStatus, Profile } from './lib/types';
+import excaliburLogo from './assets/excalibur-logo.png';
 
 const signInSchema = z.object({
   email: z.string().email('Use a valid email address.'),
@@ -171,6 +171,22 @@ function App() {
   );
 }
 
+function BrandLockup({ subtitle }: { subtitle: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <img
+        src={excaliburLogo}
+        alt="Excalibur"
+        className="h-11 w-auto rounded-xl object-contain sm:h-12"
+      />
+      <div>
+        <p className="text-lg font-semibold tracking-[-0.03em] text-slate-950">Excalibur</p>
+        <p className="text-[11px] uppercase tracking-[0.32em] text-slate-500">{subtitle}</p>
+      </div>
+    </div>
+  );
+}
+
 function LeadIntakePage() {
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -250,15 +266,7 @@ function LeadIntakePage() {
 
       <div className="relative mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col gap-8">
         <nav className="panel flex items-center justify-between rounded-full px-5 py-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 text-white shadow-soft">
-              <Sparkles className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-lg font-semibold tracking-[-0.03em] text-slate-950">Excalibur</p>
-              <p className="text-[11px] uppercase tracking-[0.32em] text-slate-500">Interest Form</p>
-            </div>
-          </div>
+          <BrandLockup subtitle="Interest Form" />
           <span className="rounded-full border border-sky-200 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-600">
             Direct inquiries
           </span>
@@ -504,15 +512,7 @@ function AffiliatePortalPage({
 
       <div className="relative mx-auto flex min-h-[calc(100vh-3rem)] max-w-7xl flex-col justify-between gap-8">
         <nav className="panel flex items-center justify-between rounded-full px-5 py-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 text-white shadow-soft">
-              <Sparkles className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-lg font-semibold tracking-[-0.03em] text-slate-950">Excalibur</p>
-              <p className="text-[11px] uppercase tracking-[0.32em] text-slate-500">Affiliate Portal</p>
-            </div>
-          </div>
+          <BrandLockup subtitle="Affiliate Portal" />
           <span className="rounded-full border border-sky-200 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-600">
             Partners only
           </span>
