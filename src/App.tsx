@@ -663,6 +663,45 @@ function AffiliatePortalPage({
             </div>
           </section>
         </section>
+
+        <footer className="panel rounded-[2rem] p-6 sm:p-8">
+          <div className="max-w-5xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.26em] text-slate-500">Affiliate agreement</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
+              Registration and ongoing participation mean acceptance of these affiliate terms.
+            </h2>
+            <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-600">
+              By registering for the Excalibur Affiliate Portal and continuing as an active affiliate, you agree that
+              Excalibur may track referrals submitted through your assigned code or tracked form link, manage the
+              client relationship directly, and calculate payouts based on the referral milestones shown in this
+              portal.
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <FeaturePill
+                icon={ShieldCheck}
+                title="Referral attribution"
+                body="Referrals are credited based on your assigned referral code or your tracked lead form link as recorded by Excalibur."
+              />
+              <FeaturePill
+                icon={Wallet}
+                title="Payout structure"
+                body="Qualified referrals are tracked up to a $400 total cap, with $200 due after the first milestone and $200 due after the second milestone."
+              />
+              <FeaturePill
+                icon={CheckCircle2}
+                title="Portal as source of truth"
+                body="Lead status, close dates, payout timing, and payment completion are determined from the records maintained inside the Excalibur system."
+              />
+            </div>
+
+            <p className="mt-6 text-sm leading-6 text-slate-600">
+              Current payout timing in this program is the first $200 milestone after 30 days by default, or 60 days
+              for retainer-only timelines, followed by the second $200 milestone after 6 months. If you do not agree
+              to these terms, do not register or continue participating in the portal.
+            </p>
+          </div>
+        </footer>
       </div>
     </main>
   );
