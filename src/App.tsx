@@ -664,46 +664,211 @@ function AffiliatePortalPage({
           </section>
         </section>
 
-        <footer className="panel rounded-[2rem] p-6 sm:p-8">
-          <div className="max-w-5xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.26em] text-slate-500">Affiliate agreement</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
-              Registration and ongoing participation mean acceptance of these affiliate terms.
-            </h2>
-            <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-600">
-              By registering for the Excalibur Affiliate Portal and continuing as an active affiliate, you agree that
-              Excalibur may track referrals submitted through your assigned code or tracked form link, manage the
-              client relationship directly, and calculate payouts based on the referral milestones shown in this
-              portal.
-            </p>
-
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <FeaturePill
-                icon={ShieldCheck}
-                title="Referral attribution"
-                body="Referrals are credited based on your assigned referral code or your tracked lead form link as recorded by Excalibur."
-              />
-              <FeaturePill
-                icon={Wallet}
-                title="Payout structure"
-                body="Qualified referrals are tracked up to a $400 total cap, with $200 due after the first milestone and $200 due after the second milestone."
-              />
-              <FeaturePill
-                icon={CheckCircle2}
-                title="Portal as source of truth"
-                body="Lead status, close dates, payout timing, and payment completion are determined from the records maintained inside the Excalibur system."
-              />
-            </div>
-
-            <p className="mt-6 text-sm leading-6 text-slate-600">
-              Current payout timing in this program is the first $200 milestone after 30 days by default, or 60 days
-              for retainer-only timelines, followed by the second $200 milestone after 6 months. If you do not agree
-              to these terms, do not register or continue participating in the portal.
-            </p>
-          </div>
-        </footer>
+        <AffiliateAgreementFooter />
       </div>
     </main>
+  );
+}
+
+function AffiliateAgreementFooter() {
+  return (
+    <footer className="panel rounded-[2rem] p-6 sm:p-8">
+      <div className="max-w-5xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.26em] text-slate-500">Affiliate agreement</p>
+        <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
+          Registering for and participating in this portal constitutes acceptance of the agreement below.
+        </h2>
+
+        <article className="mt-6 rounded-[1.75rem] border border-white/70 bg-white/72 p-6 shadow-[0_16px_40px_rgba(70,98,167,0.08)]">
+          <div className="border-b border-slate-200 pb-5">
+            <p className="text-center text-2xl font-semibold tracking-[-0.04em] text-slate-950">EXCALIBUR</p>
+            <h3 className="mt-2 text-center text-xl font-semibold text-slate-900">
+              Referral &amp; Affiliate Partner Agreement
+            </h3>
+            <p className="mt-3 text-center text-sm leading-6 text-slate-600">
+              <span className="font-semibold text-slate-700">Legal Jurisdiction:</span> United States (California)
+              {' | '}
+              <span className="font-semibold text-slate-700">Governing Law:</span> State of California, without
+              regard to conflict-of-laws principles
+            </p>
+          </div>
+
+          <div className="mt-6 space-y-6 text-sm leading-7 text-slate-700">
+            <AgreementSection
+              title="1. Purpose"
+              body={'This Agreement is between Soham Jani, an individual doing business as Excalibur ("Company"), and the Partner. It sets the terms under which Company compensates an individual or business ("Partner") for referring new clients. It governs qualification, payout, and program conduct. It is not an employment, agency, or exclusivity agreement.'}
+            />
+
+            <AgreementSection title="2. Qualifying Referral">
+              <p>
+                A referral qualifies for compensation only if all of the following are true:
+              </p>
+              <ul className="mt-3 list-disc space-y-2 pl-5">
+                <li>
+                  The Partner submits the lead&apos;s name and contact information through Excalibur&apos;s official
+                  referral form prior to any contact between Excalibur and the business.
+                </li>
+                <li>
+                  Excalibur had no prior contact, ongoing conversation, or existing relationship with the referred
+                  business at the time of submission.
+                </li>
+                <li>
+                  The referred business subsequently signs an agreement with Excalibur and becomes an active, paying
+                  client.
+                </li>
+              </ul>
+              <p className="mt-3">
+                Introductions, leads, or names that do not result in a signed, paying client earn no compensation. A
+                referral submitted for a business Excalibur is already in contact with does not qualify, regardless of
+                submission order.
+              </p>
+            </AgreementSection>
+
+            <AgreementSection title="3. Payout Structure">
+              <div className="overflow-x-auto">
+                <table className="mt-3 w-full min-w-[640px] border-collapse overflow-hidden rounded-[1.2rem] border border-slate-200 text-left">
+                  <thead className="bg-slate-100/80 text-slate-900">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold">Milestone</th>
+                      <th className="px-4 py-3 font-semibold">Amount</th>
+                      <th className="px-4 py-3 font-semibold">Trigger</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-slate-200">
+                      <td className="px-4 py-3 font-medium">Tier 1</td>
+                      <td className="px-4 py-3">$200</td>
+                      <td className="px-4 py-3">
+                        Referred client is active and paying for 30 consecutive days (project-fee + retainer clients)
+                        or 60 consecutive days (retainer-only clients, no project fee).
+                      </td>
+                    </tr>
+                    <tr className="border-t border-slate-200">
+                      <td className="px-4 py-3 font-medium">Tier 2</td>
+                      <td className="px-4 py-3">$200</td>
+                      <td className="px-4 py-3">
+                        The referred client is active and paying for 6 consecutive months. Applies only to clients on
+                        an ongoing retainer.
+                      </td>
+                    </tr>
+                    <tr className="border-t border-slate-200 bg-slate-50/80">
+                      <td className="px-4 py-3 font-semibold">Maximum Total</td>
+                      <td className="px-4 py-3 font-semibold">$400</td>
+                      <td className="px-4 py-3 font-semibold">
+                        Per successfully referred, paying client. One-time project-only clients (no retainer) cap at
+                        Tier 1 ($200 total).
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </AgreementSection>
+
+            <AgreementSection
+              title={'4. Definition of "Active, Paying"'}
+              body={'A client is considered "active and paying" for a given period only if payment for that period was successfully collected by Excalibur and no refund or chargeback was issued for that payment. A milestone is triggered only if the client meets this standard on the milestone date itself. If a client has canceled, defaulted, or received a refund prior to a milestone date, that milestone is not triggered and no payment is owed for it.'}
+            />
+            <AgreementSection
+              title="5. Earned Payments; No Clawback"
+              body="Once a milestone under Section 3 is triggered and paid, that payment is fully earned and belongs to the Partner permanently. Excalibur will not reclaim, offset, or deduct any previously paid milestone amount, regardless of subsequent events including client cancellation, non-payment, dispute, or termination of this Agreement. This protection applies only to milestones already triggered as of the date of any relevant event; it does not create an entitlement to future, untriggered milestones."
+            />
+            <AgreementSection
+              title="6. Payment Method, Timing, and Tax Reporting"
+              body="All payments are issued via Stripe to the Partner's designated account. Excalibur will process payment within a commercially reasonable time after a milestone is confirmed, generally within 5 to 10 business days. Before any payment is issued, the Partner must submit a completed Form W-9 (or Form W-8BEN for non-U.S. persons) to Excalibur. Excalibur may withhold payment until a valid form is on file. The Partner is responsible for the accuracy of their payment and tax information and for all tax reporting obligations arising from payments received. Excalibur will issue Form 1099-NEC (or applicable equivalent) as required by law."
+            />
+
+            <AgreementSection title="7. Program Conduct">
+              <ul className="list-disc space-y-2 pl-5">
+                <li>
+                  Partners may not represent themselves as employees, agents, or official representatives of
+                  Excalibur.
+                </li>
+                <li>
+                  Partners may not make guarantees, promises, or claims about Excalibur&apos;s services, pricing, or
+                  results beyond what Excalibur has published.
+                </li>
+                <li>
+                  Partners may not submit fabricated, duplicate, or self-referred leads. Excalibur may deny or reverse
+                  credit for any referral it determines, in good faith, to be fraudulent, spam, or made in bad faith
+                  prior to any payment being triggered.
+                </li>
+                <li>
+                  This Agreement does not create exclusivity in either direction. The Partner may refer through other
+                  channels or programs, and Excalibur may run other referral or marketing arrangements concurrently.
+                </li>
+              </ul>
+            </AgreementSection>
+
+            <AgreementSection
+              title="8. Non-Solicitation"
+              body="For 12 months following the date a Partner is credited with a qualifying referral under Section 2, the Partner may not directly or indirectly solicit that referred client to terminate, reduce, or divert its business relationship with Excalibur, or to engage the Partner or any third party for services competitive with those Excalibur provides that client. This restriction applies only to clients referred under this Agreement and does not restrict the Partner's other business activity."
+            />
+            <AgreementSection
+              title="9. Confidentiality"
+              body={`Through participation in this program, the Partner may learn non-public information about Excalibur's clients, pricing, methods, or business operations ("Confidential Information"). The Partner agrees to use Confidential Information only as needed to participate in the referral program and not to disclose it to any third party, both during the term of this Agreement and after its termination. This obligation does not apply to information that is publicly available through no fault of the Partner or that the Partner is required to disclose by law.`}
+            />
+            <AgreementSection
+              title="10. Independent Parties"
+              body="The Partner is an independent third party, not an employee, joint venturer, or partner in the legal sense. Nothing in this Agreement creates an employment, agency, or fiduciary relationship between the Partner and Excalibur."
+            />
+            <AgreementSection
+              title="11. Limitation of Liability"
+              body="Excalibur's total aggregate liability to the Partner under this Agreement, for any claim arising out of or related to this Agreement, is limited to the total commissions actually paid to that Partner under this Agreement. In no event will Excalibur be liable for indirect, incidental, consequential, or punitive damages."
+            />
+            <AgreementSection
+              title="12. Term and Termination"
+              body="This Agreement remains in effect until terminated by either party with written notice delivered by email to the address on file (or, for Excalibur, to the Partner's registered email; for the Partner, to partners@excal.org) or by other written means acknowledged by both parties. Termination ends the Partner's ability to submit new qualifying referrals going forward. Termination does not affect milestones already triggered and owed as of the termination date, nor does it accelerate or forfeit milestones tied to referrals already submitted and pending as of that date, which remain governed by Sections 2 through 6. Sections 5, 6, 8, 9, 11, and 13 survive termination."
+            />
+            <AgreementSection
+              title="13. Dispute Resolution"
+              body="Any dispute arising out of or relating to this Agreement will be resolved by final and binding arbitration administered under the American Arbitration Association's Commercial Arbitration Rules, conducted by a single arbitrator in California (or remotely, by mutual agreement). Judgment on the arbitration award may be entered in any court of competent jurisdiction. Each party bears its own costs and fees unless the arbitrator determines otherwise. This clause does not prevent either party from seeking injunctive relief in court for breach of Section 9 (Confidentiality)."
+            />
+            <AgreementSection
+              title="14. Changes to Program Terms"
+              body="Excalibur may update payout amounts, milestone structures, or program terms for referrals submitted after the effective date of any change. Changes will not retroactively reduce compensation already earned or reduce the terms applicable to referrals submitted before the change took effect."
+            />
+            <AgreementSection
+              title="15. Assignment"
+              body="The Partner may not assign or transfer this Agreement or any rights under it without Excalibur's prior written consent. Excalibur may assign this Agreement in connection with a merger, acquisition, or sale of substantially all of its assets."
+            />
+            <AgreementSection
+              title="16. Severability"
+              body="If any provision of this Agreement is found unenforceable, that provision will be limited or removed to the minimum extent necessary, and the remaining provisions will remain in full force and effect."
+            />
+            <AgreementSection
+              title="17. Electronic Signature and Acceptance"
+              body={'This Agreement may be accepted electronically, including by clicking "I Agree," submitting the affiliate portal signup form, or providing an electronic signature. Electronic acceptance has the same legal effect as a handwritten signature.'}
+            />
+            <AgreementSection
+              title="18. Business Structure"
+              body={'Company is operated by Soham Jani as a sole proprietorship; it is not a registered corporation, limited liability company, or other separate legal entity. All rights, obligations, and liabilities of "Company" under this Agreement belong to Soham Jani individually, subject to the limitation of liability in Section 11.'}
+            />
+            <AgreementSection
+              title="19. Entire Agreement"
+              body="This document, together with the current published Referral Program brochure, represents the entire agreement between the Partner and Excalibur regarding the referral program and supersedes any prior verbal or written understanding on this subject."
+            />
+          </div>
+        </article>
+      </div>
+    </footer>
+  );
+}
+
+function AgreementSection({
+  title,
+  body,
+  children,
+}: {
+  title: string;
+  body?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <section>
+      <h4 className="text-base font-semibold text-slate-950">{title}</h4>
+      {body ? <p className="mt-2">{body}</p> : null}
+      {children ? <div className="mt-2">{children}</div> : null}
+    </section>
   );
 }
 
