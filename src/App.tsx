@@ -671,8 +671,6 @@ function AffiliatePortalPage({
 }
 
 function AffiliateAgreementFooter() {
-  const [showSummary, setShowSummary] = useState(false);
-
   return (
     <footer className="panel rounded-[2rem] p-6 sm:p-8">
       <div className="max-w-5xl">
@@ -682,17 +680,6 @@ function AffiliateAgreementFooter() {
         </h2>
 
         <article className="mt-6 rounded-[1.75rem] border border-white/70 bg-white/72 p-6 shadow-[0_16px_40px_rgba(70,98,167,0.08)]">
-          <div className="flex justify-end">
-            <button
-              type="button"
-              onClick={() => setShowSummary(true)}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950"
-            >
-              <CheckCircle2 className="h-4 w-4 text-blue-600" />
-              Summarize Terms &amp; Process
-            </button>
-          </div>
-
           <div className="border-b border-slate-200 pb-5">
             <p className="text-center text-2xl font-semibold tracking-[-0.04em] text-slate-950">EXCALIBUR</p>
             <h3 className="mt-2 text-center text-xl font-semibold text-slate-900">
@@ -862,43 +849,6 @@ function AffiliateAgreementFooter() {
             />
           </div>
         </article>
-
-        {showSummary ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/45 px-4 py-6">
-            <div className="panel max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[2rem] p-6 sm:p-8">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.26em] text-slate-500">Simple summary</p>
-                  <h3 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
-                    Terms &amp; process in plain English
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowSummary(false)}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950"
-                >
-                  Close
-                </button>
-              </div>
-
-              <ul className="mt-6 list-disc space-y-3 pl-5 text-sm leading-7 text-slate-700">
-                <li>Earn up to $400 for every qualified client referral.</li>
-                <li>Get paid in two clear milestones, so you know exactly what unlocks each payout.</li>
-                <li>Keep anything already paid. No clawbacks on completed milestones.</li>
-                <li>Your referrals are tracked through the official Excalibur system, so attribution is straightforward.</li>
-                <li>No employment lock-in or exclusivity. You stay independent.</li>
-                <li>The portal gives you visibility into referral progress and payout timing.</li>
-                <li>Electronic signup keeps onboarding simple and fast.</li>
-              </ul>
-
-              <p className="mt-6 text-sm leading-6 text-slate-600">
-                These points are a convenience summary only. The full agreement below controls qualification, payout,
-                conduct, and dispute terms.
-              </p>
-            </div>
-          </div>
-        ) : null}
       </div>
     </footer>
   );
