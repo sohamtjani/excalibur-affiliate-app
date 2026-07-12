@@ -32,6 +32,8 @@ export interface Lead {
   contact_info: {
     email?: string;
     phone?: string;
+    help_needed?: string;
+    presence_link?: string;
   } | null;
   notes: string | null;
   affiliate_id: string | null;

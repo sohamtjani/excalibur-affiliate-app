@@ -1576,7 +1576,7 @@ function AdminDashboard({ profile }: { profile: Profile }) {
           <div className="panel rounded-[2rem] p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.26em] text-slate-500">Lead pipeline</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
-              Review and update referrals
+              Submitted lead cards
             </h2>
 
             <div className="mt-5 space-y-4">
@@ -1592,90 +1592,49 @@ function AdminDashboard({ profile }: { profile: Profile }) {
                             <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                               {lead.business_name}
                             </h3>
-                            <p className="mt-2 text-sm text-slate-600">
-                              {lead.contact_name} • {lead.contact_info?.email || 'No email'} • {lead.contact_info?.phone || 'No phone'}
-                            </p>
-                            <p className="mt-2 text-sm text-slate-500">
-                              Affiliate: {affiliate?.name || 'Unassigned'} {affiliate?.referral_code ? `• ${affiliate.referral_code}` : ''}
-                            </p>
+                            <p className="mt-2 text-sm text-slate-600">{lead.contact_name}</p>
                           </div>
                           <StatusBadge status={lead.status} />
                         </div>
 
                         <div className="grid gap-4 sm:grid-cols-2">
-                          <label className="block text-sm text-slate-600">
-                            <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                              Lead stage
-                            </span>
-                            <select
-                              value={normalizeLeadStage(lead.status)}
-                              onChange={(event) =>
-                                void updateLead(lead.id, { status: event.target.value as LeadStatus })
-                              }
-                              className="w-full rounded-[1.15rem] border border-slate-200 bg-white/88 px-4 py-3.5 text-slate-950 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
-                            >
-                              {leadStatuses.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </label>
-
-                          <label className="block text-sm text-slate-600">
-                            <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                              First payout timing
-                            </span>
-                            <select
-                              value={String(lead.payout_timeline_days ?? 30)}
-                              onChange={(event) =>
-                                void updateLead(lead.id, {
-                                  payout_timeline_days: Number(event.target.value) as 30 | 60,
-                                })
-                              }
-                              className="w-full rounded-[1.15rem] border border-slate-200 bg-white/88 px-4 py-3.5 text-slate-950 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
-                            >
-                              <option value="30">30 days</option>
-                              <option value="60">60 days</option>
-                            </select>
-                          </label>
-                        </div>
-
-                        <div className="grid gap-3 sm:grid-cols-2">
-                          <PayoutActionCard
-                            title="Tier 1"
-                            body={lead.tier_1_paid_at ? `Paid ${formatDate(lead.tier_1_paid_at)}` : lead.tier_1_due_at ? `Due ${formatDate(lead.tier_1_due_at)}` : 'Starts after the lead is closed'}
-                            actionLabel={lead.tier_1_paid_at ? 'Undo paid' : 'Mark paid'}
-                            onAction={() =>
-                              void updateLead(lead.id, {
-                                tier_1_paid_at: lead.tier_1_paid_at ? null : new Date().toISOString(),
-                              })
-                            }
+                          <LeadValueCard label="Email" value={lead.contact_info?.email || 'No email'} />
+                          <LeadValueCard label="Phone" value={lead.contact_info?.phone || 'No phone'} />
+                          <LeadValueCard
+                            label="Help needed"
+                            value={lead.contact_info?.help_needed || 'Not provided'}
                           />
-                          <PayoutActionCard
-                            title="Tier 2"
-                            body={lead.tier_2_paid_at ? `Paid ${formatDate(lead.tier_2_paid_at)}` : lead.tier_2_due_at ? `Due ${formatDate(lead.tier_2_due_at)}` : 'Starts after the lead is closed'}
-                            actionLabel={lead.tier_2_paid_at ? 'Undo paid' : 'Mark paid'}
-                            onAction={() =>
-                              void updateLead(lead.id, {
-                                tier_2_paid_at: lead.tier_2_paid_at ? null : new Date().toISOString(),
-                              })
-                            }
+                          <LeadValueCard
+                            label="Referral code"
+                            value={lead.submitted_referral_code || 'None provided'}
+                          />
+                          <LeadValueCard
+                            label="Submitted"
+                            value={formatDate(lead.submitted_at)}
+                          />
+                          <LeadValueCard
+                            label="Affiliate"
+                            value={`${affiliate?.name || 'Unassigned'}${affiliate?.referral_code ? ` • ${affiliate.referral_code}` : ''}`}
                           />
                         </div>
+
+                        {lead.contact_info?.presence_link ? (
+                          <div className="rounded-[1.2rem] border border-slate-200 bg-slate-50/70 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                              Website / profile link
+                            </p>
+                            <a
+                              href={lead.contact_info.presence_link}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="mt-2 block break-all text-sm font-medium text-blue-700 underline-offset-4 hover:underline"
+                            >
+                              {lead.contact_info.presence_link}
+                            </a>
+                          </div>
+                        ) : null}
 
                         {lead.notes ? <p className="text-sm leading-6 text-slate-500">{lead.notes}</p> : null}
-
-                        <div className="flex justify-end">
-                          <button
-                            type="button"
-                            onClick={() => void deleteLead(lead.id)}
-                            disabled={busyKey === `delete-lead-${lead.id}`}
-                            className="rounded-full border border-rose-200 bg-rose-50 px-4 py-2 text-sm font-semibold text-rose-700"
-                          >
-                            Delete lead
-                          </button>
-                        </div>
                       </div>
                     </div>
                   );
@@ -1818,6 +1777,15 @@ function MiniStat({ label, value }: { label: string; value: string }) {
     <div className="rounded-[1.2rem] border border-slate-200 bg-white/72 p-4">
       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">{label}</p>
       <p className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-slate-950">{value}</p>
+    </div>
+  );
+}
+
+function LeadValueCard({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-[1.2rem] border border-slate-200 bg-slate-50/70 p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">{label}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-700">{value}</p>
     </div>
   );
 }
